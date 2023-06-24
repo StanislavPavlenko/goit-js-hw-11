@@ -10,35 +10,36 @@ const searchForm = document.querySelector('.search-form');
 searchForm.addEventListener('submit', onFormSubmit);
 
 function onFormSubmit(e) {
-    e.preventDefault();
-    showLoader()
-    clearContainer();
-    textResult.style.display = 'none';
-    newServer.query = e.currentTarget.elemets.searchQuery.value;
-    newServer.resetPage();
-    setTimeout(() => {
-        newServer
-            .fetchSearch()
-            .then(request => {
-                hidenLoader();
-                if (newServer.query === '') {
-                    return;
-                } else if (request.hits.length === 0) {
-                    return Notify.failure(
-                        'Sorry, there are no images matching your search query. Please try again.'
-                    );
-                }
-                Notify.success(`Hooray! We found ${request.totalHits} images.`);
-                renderResult(request.hits), lightbox.refresh();
-            })
-            .catch(err => {
-                hidenLoader()
-                console.log(err);
-                Notify.failure(
-                    'Sorry, there are no images matching your search query. Please try again.'
-                );
-            });
-    }, 500);
+  e.preventDefault();
+  showLoader();
+  clearContainer();
+  textFinish.style.display = 'none';
+  newServer.query = e.currentTarget.elements.searchQuery.value;
+  newServer.resetPage();
+  setTimeout(() => {
+    newServer
+      .fetchSearch()
+      .then(request => {
+        hidenLoader();
+        if (newServer.query === '') {
+          return;
+        } else if (request.hits.length === 0) {
+          return Notify.failure(
+            'Sorry, there are no images matching your search query. Please try again.'
+          );
+        }
+
+        Notify.success(`Hooray! We found ${request.totalHits} images.`);
+        renderResult(request.hits), lightbox.refresh();
+      })
+      .catch(err => {
+        hidenLoader()
+        console.log(err);
+        Notify.failure(
+          'Sorry, there are no images matching your search query. Please try again.'
+        );
+      });
+  }, 500);
 }
 
 function renderResult(arry) {
