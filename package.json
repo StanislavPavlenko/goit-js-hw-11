@@ -5,11 +5,11 @@
   "homepage": "https://goitacademy.github.io/StanislavPavlenko/goit-js-hw-11",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /goit-js-hw-10/"
+    "build": "parcel build src/*.html --public-url /goit-js-hw-11/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/StanislavPavlenko/goit-js-hw-10.git"
+    "url": "git+https://github.com/StanislavPavlenko/goit-js-hw-11.git"
   },
   "keywords": [],
   "author": "Alexander Repeta <alexander.repeta@gmail.com>",
