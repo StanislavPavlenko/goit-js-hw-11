@@ -7,14 +7,14 @@ export default class NewServer {
   }
   async fetchSearch() {
     const BASE_URL = 'https://pixabay.com/api/';
-    const API_KEY = '37071230-d6b04d3068f1a0950a5b376a5';
+    const API_KEY = '37799169-545c59819f10377b7156167e7';
 
     const searchParams = new URLSearchParams({
       key: API_KEY,
       image_type: 'photo',
       orientation: 'horizontal',
       safesearch: true,
-      per_page: 40,
+      per_page: 30,
       q: this.searchName,
       page: this.numberPage,
     });
@@ -47,6 +47,6 @@ export default class NewServer {
   }
 
   totalPages() {
-    return Math.ceil(this.data.totalHits / 40);
+    return Math.ceil(this.data.totalHits / 30);
   }
 }
