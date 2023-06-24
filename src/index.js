@@ -13,7 +13,7 @@ function onFormSubmit(e) {
   e.preventDefault();
   showLoader();
   clearContainer();
-  textFinish.style.display = 'none';
+  textResult.style.display = 'none';
   newServer.query = e.currentTarget.elements.searchQuery.value;
   newServer.resetPage();
   setTimeout(() => {
