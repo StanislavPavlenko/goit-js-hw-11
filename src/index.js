@@ -7,11 +7,11 @@ const gallery = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
 const textResult = document.querySelector('.text');
 const searchForm = document.querySelector('.search-form');
-searchForm.addEventListener('submit, onFormSubmit');
+searchForm.addEventListener('submit', 'onFormSubmit');
 
 function onFormSubmit(e) {
     e.preventDefault();
-    showLoader();
+    showLoader()
     clearContainer();
     textResult.style.display = 'none';
     newServer.query = e.currentTarget.elemets.searchQuery.value;
