@@ -1,3 +1,5 @@
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import throttle from 'lodash.throttle';
 import NewServer from './js/pixa-api';
@@ -127,3 +129,8 @@ function showLoader() {
 function hidenLoader() {
   loader.style.display = 'none';
 }
+
+var lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
