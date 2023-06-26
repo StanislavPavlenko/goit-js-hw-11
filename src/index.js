@@ -18,30 +18,30 @@ function onFormSubmit(e) {
   textFinish.style.display = 'none';
   newServer.query = e.currentTarget.elements.searchQuery.value;
   newServer.resetPage();
-  setTimeout(() => {
+  if (newServer.query === '') {
+    Notify.warning('What exactly do you want to find?');
+    return;
+  } else if (newServer.query !== '') {
     newServer
       .fetchSearch()
       .then(request => {
         hidenLoader();
-        if (newServer.query === '') {
-          return;
-        } else if (request.hits.length === 0) {
+        if (request.hits.length === 0) {
           return Notify.failure(
             'Sorry, there are no images matching your search query. Please try again.'
           );
         }
-
         Notify.success(`Hooray! We found ${request.totalHits} images.`);
         renderResult(request.hits), lightbox.refresh();
       })
       .catch(err => {
-        hidenLoader()
+        hidenLoader();
         console.log(err);
         Notify.failure(
           'Sorry, there are no images matching your search query. Please try again.'
         );
       });
-  }, 500);
+  }
 }
 
 function renderResult(arry) {
@@ -89,36 +89,36 @@ window.addEventListener('scroll', throttle(handleScroll, 500));
 
 function handleScroll() {
   showLoader();
-  if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+  if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1500) {
+    
     if (newServer.query === '') {
       return;
     }
     if (newServer.numberPage > newServer.totalPages()) {
       textFinish.style.display = 'block';
-      hidenLoader() 
+      hidenLoader();
       return;
     }
-    setTimeout(() => {
-      newServer
-        .fetchSearch()
-        .then(request => {
-          renderResult(request.hits), lightbox.refresh();
-          const { height: cardHeight } = document
-            .querySelector('.gallery')
-            .firstElementChild.getBoundingClientRect();
 
-          window.scrollBy({
-            top: cardHeight * 2,
-            behavior: 'smooth',
-          });
-          hidenLoader();
-        })
-        .catch(err => {
-          hidenLoader()
-          console.log(err);
-          Notify.failure(`An error occurred during the search.`);
+    newServer
+      .fetchSearch()
+      .then(request => {
+        renderResult(request.hits), lightbox.refresh();
+        const { height: cardHeight } = document
+          .querySelector('.gallery')
+          .firstElementChild.getBoundingClientRect();
+
+        window.scrollBy({
+          top: cardHeight * 2,
+          behavior: 'smooth',
         });
-    }, 500);
+        hidenLoader();
+      })
+      .catch(err => {
+        hidenLoader();
+        console.log(err);
+        Notify.failure(`An error occurred during the search.`);
+      });
   }
 }
 
