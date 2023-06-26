@@ -7,7 +7,7 @@ const newServer = new NewServer();
 
 const gallery = document.querySelector('.gallery');
 const loader = document.querySelector('.loader');
-const textResult = document.querySelector('.text');
+const textFinish = document.querySelector('.text');
 const searchForm = document.querySelector('.search-form');
 searchForm.addEventListener('submit', onFormSubmit);
 
@@ -15,7 +15,7 @@ function onFormSubmit(e) {
   e.preventDefault();
   showLoader();
   clearContainer();
-  textResult.style.display = 'none';
+  textFinish.style.display = 'none';
   newServer.query = e.currentTarget.elements.searchQuery.value;
   newServer.resetPage();
   setTimeout(() => {
