@@ -96,6 +96,7 @@ function handleScroll() {
     if (newServer.numberPage > newServer.totalPages()) {
       textFinish.style.display = 'block';
       hidenLoader() 
+      return;
     }
     setTimeout(() => {
       newServer
