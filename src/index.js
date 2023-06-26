@@ -94,7 +94,7 @@ function handleScroll() {
       return;
     }
     if (newServer.numberPage > newServer.totalPages()) {
-      textFinish.style.display = 'block';
+      textResult.style.display = 'block';
       hidenLoader() 
       return;
     }
